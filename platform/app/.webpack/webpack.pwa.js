@@ -143,7 +143,7 @@ module.exports = (env, argv) => {
       // http2: true,
       // https: true,
       open: true,
-      port: 3000,
+      port: 4000,
       client: {
         overlay: { errors: true, warnings: false },
       },
@@ -171,6 +171,7 @@ module.exports = (env, argv) => {
       headers: {
         'Cross-Origin-Embedder-Policy': 'require-corp',
         'Cross-Origin-Opener-Policy': 'same-origin',
+        // "Cross-Origin-Resource-Policy": "cross-origin",
       },
     },
   });

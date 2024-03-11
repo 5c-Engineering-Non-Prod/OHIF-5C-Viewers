@@ -21,6 +21,25 @@ window.config = {
   },
   // filterQueryParam: false,
   defaultDataSourceName: 'dicomweb',
+  whiteLabeling: {
+
+    createLogoComponentFn: function(React) {
+      return React.createElement('a', {
+        target: '_self',
+        rel: 'noopener noreferrer',
+        className: 'header-brand',
+        href: '/',
+        style: {
+          display: 'block',
+          textIndent: '-9999px',
+          background: 'url(../assets/5c-borderless-radiology.png)',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          width: '200px',
+        },
+      });
+    },
+  },
   /* Dynamic config allows user to pass "configUrl" query string this allows to load config without recompiling application. The regex will ensure valid configuration source */
   // dangerouslyUseDynamicConfig: {
   //   enabled: true,

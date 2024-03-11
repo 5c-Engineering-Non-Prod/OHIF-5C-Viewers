@@ -75,6 +75,7 @@ function Local({ modePath }: LocalProps) {
     const studies = await filesToStudies(acceptedFiles, dataSource);
 
     const query = new URLSearchParams();
+    console.log("Studies",{studies});
 
     if (microscopyExtensionLoaded) {
       // TODO: for microscopy, we are forcing microscopy mode, which is not ideal.
@@ -82,11 +83,13 @@ function Local({ modePath }: LocalProps) {
       //     there user can select microscopy mode
       const smStudies = studies.filter(id => {
         const study = DicomMetadataStore.getStudy(id);
+        console.log("study", study);
+
         return (
           study.series.findIndex(s => s.Modality === 'SM' || s.instances[0].Modality === 'SM') >= 0
         );
       });
-
+      console.log("SMStudies",{smStudies});
       if (smStudies.length > 0) {
         smStudies.forEach(id => query.append('StudyInstanceUIDs', id));
 
@@ -97,8 +100,9 @@ function Local({ modePath }: LocalProps) {
     // Todo: navigate to work list and let user select a mode
     studies.forEach(id => query.append('StudyInstanceUIDs', id));
     query.append('datasources', 'dicomlocal');
+console.log("query",query.toString());
 
-    navigate(`/${modePath}?${decodeURIComponent(query.toString())}`);
+    navigate(`/viewer/dicomlocal?${decodeURIComponent(query.toString())}`);
   };
 
   // Set body style
@@ -127,8 +131,8 @@ function Local({ modePath }: LocalProps) {
             <div className="bg-secondary-dark mx-auto space-y-2 rounded-lg py-8 px-8 drop-shadow-md">
               <img
                 className="mx-auto block h-14"
-                src="./ohif-logo.svg"
-                alt="OHIF"
+                src="/assets/5c-borderless-radiology.png"
+                alt="5c-logo"
               />
               <div className="space-y-2 pt-4 text-center">
                 {dropInitiated ? (

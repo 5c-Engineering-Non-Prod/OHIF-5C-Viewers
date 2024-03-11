@@ -262,11 +262,11 @@ const ViewportDownloadForm = ({
 
   return (
     <div>
-      <Typography variant="h6">
+      {/* <Typography variant="h6">
         {t('Please specify the dimensions, filename, and desired type for the output image.')}
-      </Typography>
+      </Typography> */}
 
-      <div className="mt-6 flex flex-col">
+      {/* <div className="mt-6 flex flex-col">
         <div className="mb-4 w-full">
           <Input
             data-cy="file-name"
@@ -361,7 +361,7 @@ const ViewportDownloadForm = ({
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="mt-8">
         <div
@@ -400,7 +400,7 @@ const ViewportDownloadForm = ({
           type={ButtonEnums.type.primary}
           name={'download'}
         >
-          {t('Download')}
+          {t('Copy')}
         </Button>
       </div>
     </div>

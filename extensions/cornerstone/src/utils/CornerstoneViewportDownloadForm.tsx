@@ -14,7 +14,7 @@ import { ViewportDownloadForm } from '@ohif/ui';
 import { getEnabledElement as OHIFgetEnabledElement } from '../state';
 
 const MINIMUM_SIZE = 100;
-const DEFAULT_SIZE = 512;
+const DEFAULT_SIZE = 256;
 const MAX_TEXTURE_SIZE = 10000;
 const VIEWPORT_ID = 'cornerstone-viewport-download-form';
 
@@ -204,18 +204,36 @@ const CornerstoneViewportDownloadForm = ({
     });
   };
 
-  const downloadBlob = (filename, fileType) => {
+  const downloadBlob = async (filename, fileType) => {
     const file = `${filename}.${fileType}`;
     const divForDownloadViewport = document.querySelector(
       `div[data-viewport-uid="${VIEWPORT_ID}"]`
     );
 
-    html2canvas(divForDownloadViewport).then(canvas => {
-      const link = document.createElement('a');
-      link.download = file;
-      link.href = canvas.toDataURL(fileType, 1.0);
-      link.click();
-    });
+    // html2canvas(divForDownloadViewport).then(canvas => {
+    //   // const link = document.createElement('a');
+    //   canvas.toBlob(blob => {
+
+    //     const item = new ClipboardItem({ "image/png": blob });
+    //     navigator.clipboard.write([item]).then(() => {
+    //         console.log('Canvas image copied to clipboard');
+    //     }, function(error) {
+    //         console.error('Error copying canvas to clipboard: ', error);
+    //     }).catch(err => console.log(err));
+    // });
+    // });
+
+    try {
+      const canvas = await html2canvas(divForDownloadViewport as HTMLElement);
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png')) as typeof blob;
+
+      const item = new ClipboardItem({ "image/png": blob });
+      await navigator.clipboard.write([item]);
+      onClose?.()
+      console.log('Canvas image copied to clipboard');
+    } catch (error) {
+        console.error('Error copying canvas to clipboard: ', error);
+    }
   };
 
   return (
