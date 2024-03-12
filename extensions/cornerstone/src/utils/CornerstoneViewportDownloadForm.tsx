@@ -227,8 +227,7 @@ const CornerstoneViewportDownloadForm = ({
       const canvas = await html2canvas(divForDownloadViewport as HTMLElement);
       const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png')) as typeof blob;
 
-      const item = new ClipboardItem({ "image/png": blob });
-      await navigator.clipboard.write([item]);
+      window.parent.postMessage({ type: 'captured', data: blob }, '*');
       onClose?.()
       console.log('Canvas image copied to clipboard');
     } catch (error) {

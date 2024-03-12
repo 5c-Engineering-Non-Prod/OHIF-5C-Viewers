@@ -140,7 +140,7 @@ function ViewerLayout({
               </ErrorBoundary>
             </div>
           </div>
-          {rightPanelComponents.length ? (
+          {false ? (
             <ErrorBoundary context="Right Panel">
               <SidePanelWithServices
                 side="right"
