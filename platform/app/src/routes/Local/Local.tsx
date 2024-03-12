@@ -23,7 +23,7 @@ const getLoadButton = (onDrop, text, isDir) => {
             variant="contained" // outlined
             disabled={false}
             endIcon={<Icon name="launch-arrow" />} // launch-arrow | launch-info
-            className={classnames('font-medium', 'ml-2')}
+            className={classnames('font-medium', 'ml-2', 'bg-gray-100', 'text-gray-700', 'hover:text-white')}
             onClick={() => {}}
           >
             {text}
@@ -134,27 +134,33 @@ console.log("query",query.toString());
                 src="/assets/5c-borderless-radiology.png"
                 alt="5c-logo"
               /> */}
-              <div className="space-y-2 pt-4 text-center">
+              <div className="space-y-2 pt-2 text-center">
                 {dropInitiated ? (
                   <div className="flex flex-col items-center justify-center pt-48">
                     <LoadingIndicatorProgress className={'h-full w-full bg-black'} />
                   </div>
                 ) : (
                   <div className="space-y-2">
-                    <p className="text-base text-blue-300">
+                    {/* <p className="text-base text-blue-300">
                       Note: You data is not uploaded to any server, it will stay in your local
                       browser application
-                    </p>
-                    <p className="text-xg text-primary-active pt-6 font-semibold">
+                    </p> */}
+                    <p className="text-lg text-blue-300 font-bold">
                       Drag and Drop DICOM files here to load them in the Viewer
                     </p>
-                    <p className="text-lg text-blue-300">Or click to </p>
+                    <p className="text-lg text-white">Or click to </p>
                   </div>
                 )}
               </div>
-              <div className="flex justify-around pt-4 ">
+              <div className="flex justify-around pt-2 ">
                 {getLoadButton(onDrop, 'Load files', false)}
                 {getLoadButton(onDrop, 'Load folders', true)}
+              </div>
+              <div>
+                <p className="text-sm text-center pt-2 text-white">
+                      Note: Your data is not uploaded to any server, <br /> it will stay in your local
+                      browser application
+                    </p>
               </div>
             </div>
           </div>

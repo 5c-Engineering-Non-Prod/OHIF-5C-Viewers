@@ -32,7 +32,7 @@ module.exports = {
         light: '#5acce6',
         main: '#0944b3',
         dark: '#090c29',
-        active: '#348cfd',
+        active: '#BEEFD9',
       },
 
       inputfield: {

@@ -23,7 +23,7 @@ const baseEnabledEffectClasses = 'transition duration-300 ease-in-out focus:outl
 const enabledEffectClasses = {
   [ButtonEnums.type.primary]: classnames(
     baseEnabledEffectClasses,
-    'hover:bg-customblue-80 active:bg-customblue-40'
+    'hover:bg-secondary-dark active:bg-customblue-40'
   ),
   [ButtonEnums.type.secondary]: classnames(
     baseEnabledEffectClasses,
