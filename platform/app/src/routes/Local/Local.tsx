@@ -100,7 +100,6 @@ function Local({ modePath }: LocalProps) {
     // Todo: navigate to work list and let user select a mode
     studies.forEach(id => query.append('StudyInstanceUIDs', id));
     query.append('datasources', 'dicomlocal');
-console.log("query",query.toString());
 
     navigate(`/viewer/dicomlocal?${decodeURIComponent(query.toString())}`);
   };

@@ -98,7 +98,6 @@ function DataSourceWrapper(props) {
     if (!dataSource) {
       throw new Error(`No data source found for ${dataSourceName}`);
     }
-
     return dataSource;
   });
 
@@ -151,7 +150,6 @@ function DataSourceWrapper(props) {
       setIsLoading(true);
       log.time(Enums.TimingEnum.SEARCH_TO_LIST);
       const studies = await dataSource.query.studies.search(queryFilterValues);
-
       setData({
         studies: studies || [],
         total: studies.length,

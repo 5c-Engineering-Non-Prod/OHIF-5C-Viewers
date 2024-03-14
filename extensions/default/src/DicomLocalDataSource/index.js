@@ -80,6 +80,10 @@ function createDicomLocalApi(dicomLocalConfig) {
                 instances: numInstances,
                 modalities: Array.from(modalities).join('/'),
                 NumInstances: numInstances,
+                age: firstInstance.PatientAge,
+                gender: firstInstance.PatientSex,
+                patientId: firstInstance.PatientID,
+                refDoctor: firstInstance.ReferringPhysicianName?.[0]?.Alphabetic ?? ''
               };
             }
           });

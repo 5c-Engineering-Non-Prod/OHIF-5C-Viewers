@@ -6,6 +6,7 @@ const processFile = async file => {
     const fileLoaderService = new FileLoaderService(file);
     const imageId = fileLoaderService.addFile(file);
     const image = await fileLoaderService.loadFile(file, imageId);
+    
     const dicomJSONDataset = await fileLoaderService.getDataset(image, imageId);
 
     DicomMetadataStore.addInstance(dicomJSONDataset);

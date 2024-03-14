@@ -6,6 +6,7 @@ import { ViewportGrid, ViewportPane, useViewportGrid } from '@ohif/ui';
 import EmptyViewport from './EmptyViewport';
 import classNames from 'classnames';
 import { useAppConfig } from '@state';
+import { extensionManager } from '../App';
 
 function ViewerViewportGrid(props) {
   const { servicesManager, viewportComponents, dataSource } = props;
@@ -134,6 +135,17 @@ function ViewerViewportGrid(props) {
       unsubscribe();
     };
   }, []);
+
+  const getPatientDataD = async () => {
+    const dataSource = extensionManager.getDataSources('dicomlocal')?.[0];
+    const studies = await dataSource.query.studies.search();
+    window.parent.postMessage({ type: 'patientInfo', data: studies }, '*');
+  }
+
+  useEffect(() => {
+    getPatientDataD();
+  },[])
+
 
   useEffect(() => {
     const { unsubscribe } = measurementService.subscribe(
